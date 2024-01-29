@@ -161,32 +161,7 @@
 								</div>
 					
             
-                       <!-- Filtering Options -->
-							<!-- <div class="filtering-options">
-								<form id="filterForm" action="/filterProducts" method="GET">
-									
-									<select id="filterSelect" name="filterType" class="form-control-lg" onchange="submitFilterForm()">
-										<% if (locals.selectedType) { %>
-											<option value="default" disabled><%= selectedType %></option>
-										  <% } else { %>
-											<option value="default" disabled selected>Filter-by</option>
-										  <% } %>
-										  
-
-										  <% if (theCategory && theCategory[0].types) { %>
-											<% theCategory[0].types.forEach(function(option) { %>
-											   <option value="<%= option %>"><span><%= option %></span></option>
-											<% }); %>
-										  <% } %>
-										  
-										
-									</select>
-									<input type="hidden" name="category" value="<%= selectedCategory %>">
-									<% if (locals.sortoption) { %>
-										<input type="hidden" name="sortoption" value="<%= sortoption%>">
-										<% } %>
-								</form>
-							</div> -->
+                      
                     </div>
                 </div>
             </div>

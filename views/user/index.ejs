@@ -102,6 +102,15 @@
 .single-popular-items {
 	margin-bottom: 10px;
 }
+#product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+
 
 
 	  </style> 
@@ -187,7 +196,7 @@
                     <img src="<%= banner.image.url %>" class="d-block w-100 sliderimg" alt="<%= banner.title %>">
                     <div class="carousel-caption d-none d-md-block" style="color: <%= (banner.color !== undefined && banner.color !== null) ? banner.color : '#fff' %>;">
                       <h1 style="font-size: 120px;"><%= banner.title %></h1>
-                      <h3><%= banner.subtitle %></h3>
+                      <h3 style="padding: 30px;"><%= banner.subtitle %></h3>
                     </div>
                   </a>
                 </div>
@@ -217,47 +226,47 @@
 	
 
 	<div class="popular-items section-padding30" style="padding-top: 40%;">
-        <div class="container" id="product-container">
-            <!-- Section tittle -->
-            <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-8 col-md-10">
-                    <div class="section-tittle mb-70 text-center">
-                        <h2>Discover</h2>
-                        <p>Enjoy every moment..!</p>
-                    </div>
+    <div class="container" id="product-container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="section-tittle mb-70 text-center">
+                    <h2>Discover</h2>
+                    <p>Enjoy every moment..!</p>
                 </div>
             </div>
-            <!-- product_display.ejs -->
-            <div class="row">
-                <% products.forEach(product => { %>
-                    <div  class="col-xl-4 col-lg-4 col-md-6 col-sm-6" >
-                        <a href="/singleproduct/<%= product._id %>">
+        </div>
+        <!-- product_display.ejs -->
+        <div class="row">
+            <% products.forEach(product => { %>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <a href="/singleproduct/<%= product._id %>">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
                                 <% if (product.images && product.images.length > 0) { %>
-                                 
-                                    <img src="<%= product.images[0] %>" alt="<%= product.name %> ">
+                                    <img src="<%= product.images[0] %>" alt="<%= product.name %>">
                                 <% } else { %>
-                                 
                                     <img src="path/to/placeholder-image.jpg" alt="Placeholder Image">
                                 <% } %>
                                 <div class="img-cap">
-									<a href="/singleproduct/<%= product._id %>" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
+                                    <a href="/singleproduct/<%= product._id %>" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
                                 </div>
                                 <div class="favorit-items">
                                     <span class="flaticon-heart"></span>
                                 </div>
                             </div>
                             <div class="popular-caption">
-								<h3 style="font-size: 18px;"><%= product.name %></h3>
-								<span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs <%= product.price %></span>
-                            </a>                                                      
+                                <h3 style="font-size: 18px;"><%= product.name %></h3>
+                                <span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs <%= product.price %></span>
                             </div>
-                       
-                    </div>
-					 </div>
-                <% }); %>
-            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
 			<div id="container" >
 				<div class="circular-buttons">
 				<% if(currentPage > 1)	{ %>
@@ -323,11 +332,7 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<!-- <div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
-					</p>
-				</div> -->
+				
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">
 						<ul>
@@ -401,33 +406,35 @@
 
 
 	function updateProductContainer(products) {
-		const productContainer = document.getElementById("product-container");
-		productContainer.innerHTML = ""; 
-		products.forEach(product => {
-			const newHTML = `
-			
-			<div  class="col-xl-4 col-lg-4 col-md-6 col-sm-6" >
-                        <a href="/singleproduct/${ product._id } ">
-                        <div class="single-popular-items mb-50 text-center">
-                            <div class="popular-img">
-                                    <img src="${ product.images[0] }" alt="${ product.name} ">
-                                <div class="img-cap">
-									<a href="/singleproduct/${ product._id }" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
-                                </div>
-                                <div class="favorit-items">
-                                    <span class="flaticon-heart"></span>
-                                </div>
-                            </div>
-                            <div class="popular-caption">
-								<h3 style="font-size: 18px;">${ product.name }</h3>
-								<span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs ${product.price}</span>
-                            </a>
-                            </div>
-							
-			`;
-			productContainer.innerHTML += newHTML;
-		});
-	}
+  const productContainer = document.getElementById("product-container");
+  productContainer.innerHTML = "";
+  productContainer.innerHTML += '<div class="row">';
+  products.forEach(product => {
+    const newHTML = `
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+        <a href="/singleproduct/${product._id}">
+          <div class="single-popular-items mb-50 text-center">
+            <div class="popular-img">
+              <img src="${product.images[0]}" alt="${product.name}">
+              <div class="img-cap">
+                <a href="/singleproduct/${product._id}" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
+              </div>
+              <div class="favorit-items">
+                <span class="flaticon-heart"></span>
+              </div>
+            </div>
+            <div class="popular-caption">
+              <h3 style="font-size: 18px;">${product.name}</h3>
+              <span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs ${product.price}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    `;
+    productContainer.innerHTML += newHTML;
+  });
+  productContainer.innerHTML += '</div>';
+}
 
 	function updatePaginationContainer(currentPage,totalPages){
 		let values=document.getElementById('container');
