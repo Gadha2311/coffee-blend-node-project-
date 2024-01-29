@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Coffee Blend</title>
+
+
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/user_assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/user_assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="/user_assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="/user_assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="/user_assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="/user_assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="/user_assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="/user_assets/css/responsive.css">
+	<style>
+		.passwordForm {
+			display: none;
+			margin-top: 12vh;
+		}
+
+		.edit {
+			margin-right: 20px;
+		}
+
+
+		.section-container {
+			background-color: #ffffff;
+			padding: 20px;
+			margin-bottom: 20px;
+			border-radius: 10px;
+		}
+
+		.passwordForm {
+			margin-top: 12vh;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a href="/">Home</a></li>
+								<li><a href="/shop">shop</a></li>
+
+								<li><a href="contact.html">Contact</a></li>
+								<li>
+									<a href="#">category</a>
+									<ul class="sub-menu">
+									  <li class="nav-item">
+										<% categories.filter(category => category.status !== false).forEach(category => { %>
+										  <li>
+											<a class="dropdown-item" href="/shop?category=<%= category._id %>">
+											  <%= category.name %>
+											</a>
+										  </li>
+										<% }); %>
+									  </li>
+									</ul>
+								  </li>
+							<li>
+
+							</li>
+							<li>
+
+								<div class="header-icons">
+									<a class="shopping-cart" href="/cartpage"><i class="fas fa-shopping-cart"></i></a>
+									<a class="mobile-hide search-bar-icon" href="/favouritespage"><i
+											class="fas fa-heart"></i></a>
+									<a class="mobile-hide search-bar-icon" href="/profile"><i
+											class="fas fa-user"></i></a>
+								</div>
+								<div class="search-bar">
+									<form action="/searchProducts" method='post'>
+										<input name="searchProducts" type="text" class="search-input"
+											placeholder="Search...">
+										<button class="search-button"><img src="/user_assets/img/search-50.png"
+												style="height: 20px;"></button>
+									</form>
+								</div>
+							</li>
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	<div style="background-color: black; height: 150px;"></div>
+
+
+	<div class="untree_co-section before-footer-section">
+		<div class="container">
+			<div class="row mb-5">
+				<form class="col-md-12" method="post">
+					<div class="site-blocks-table">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="product-thumbnail">Image</th>
+									<th class="product-name">Product</th>
+									<th class="product-price">Price</th>
+									<th class="product-quantity">Quantity</th>
+									<th class="product-total">Total</th>
+									<th class="product-remove">Remove</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% if(locals.message){%>
+									<div class="alert">
+										<%= message%>
+									</div>
+									<%}%>
+										<% if (cart && cart.item && cart.item.length> 0) { %>
+											<% cart.item.forEach((item, index)=> { %>
+												<tr>
+													<td class="product-thumbnail">
+														<img src="<%= item.productId.images[0] %>" alt="Image"
+															class="img-fluid"
+															style="max-width: 100px; max-height: 100px;">
+													</td>
+													<td class="product-name">
+														<h2 class="h5 text-black">
+															<%= item.productId.name %>
+														</h2>
+													</td>
+													<td>
+														<%= item.productId.price %>
+													</td>
+													<td>
+														<div class="product_count">
+															<input type="text" name="qty" id="sst<%= index%>"
+																maxlength="12" value="<%= item.quantity %>"
+																title="Quantity:" class="input-text qty">
+															<button
+																onclick="updateQuantity('<%= cart._id %>','<%= item._id %>','<%= item.price %>','<%= index %>' , 1 )"
+																class="increase items-count" type="button">
+																<i class="lnr lnr-chevron-up">+</i></button>
+															<button
+																onclick="updateQuantity('<%= cart._id %>','<%= item._id %>','<%= item.price %>', '<%= index %>', -1 )"
+																class="reduced items-count" type="button"><i
+																	class="lnr lnr-chevron-down">-</i></button>
+														</div>
+													</td>
+
+													<td>
+														<h5 id="total<%= index%>">
+															<%= item.total %>
+														</h5>
+													</td>
+													<td>
+														<a href="javascript:void(0);" onclick="confirmDelete('/deletcart/<%= item._id %>')">
+															<img src="/user_assets/img/delete icon.png" alt="#">
+														</a>
+													</td>
+
+												</tr>
+												<% }); %>
+													<% } else { %>
+														<tr>
+															<td colspan="6" class="text-center">
+																<h1>Your cart is empty</h1>
+															</td>
+														</tr>
+														<% } %>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="justify-content-end">
+		<!-- Cart Totals -->
+		<div class="row justify-content-end">
+			<div class="col-md-5">
+				<div class="row">
+					<div class="col-md-12 text-right border-bottom mb-3">
+						<h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<span class="text-black">Total</span>
+					</div>
+					<div class="col-md-6 text-right">
+						<strong class="text-black" id="total">
+							<%= cart && cart.total ? cart.total : 0 %>
+						</strong>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<form action="/checkoutpage" method="get">
+							<input type="hidden" name="cartId" value="<%= cart._id %>">
+							<button class="btn btn-black btn-lg py-3 btn-block"
+								style="background-color:#F28123;">Proceed To Checkout</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Cart Totals -->
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">About us</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+							there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>203 Fake St. Mountain View, San Francisco, California, USA.</li>
+							<li>support@coffeeblenf.com</li>
+							<li>+00 111 222 3333</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Pages</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">Menu</a></li>
+							<li><a href="services.html">Shop</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribe</h2>
+						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		function confirmDelete(deleteUrl) {
+			Swal.fire({
+                title: 'Are you sure?',
+                text: 'Do you really want to remove this item from your cart?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, remove it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+		}
+	</script>
+	<script>
+		async function updateQuantity(cartId, productId, price, index, count) {
+			try {
+
+				let quantityInput = document.getElementById(`sst${index}`);
+				let currentQuantity = parseInt(quantityInput.value);
+
+				const response = await fetch(`/update-cart-quantity/${productId}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						cartId: cartId,
+						action: count,
+						newQuantity: count + currentQuantity,
+					})
+				});
+				const data = await response.json();
+				console.log(data.success);
+
+				if (data.success) {
+					quantityInput.value = data.newQuantity;
+					document.getElementById(`total${index}`).innerText = `₹ ${price * data.newQuantity}`;
+
+
+					document.getElementById('total').innerText = `₹ ${data.total}`;
+					enableButtons();
+				} else {
+					console.error('Failed to update quantity:', data.error);
+
+				}
+
+			} catch (error) {
+				console.error('Error parsing cart JSON:', error);
+
+			}
+		}
+		function enableButtons() {
+		
+			document.querySelector('.increase.items-count').removeAttribute('disabled');
+		
+			document.querySelector('.reduced.items-count').removeAttribute('disabled');
+		}
+
+
+
+	</script>
+
+
+
+
+	</script>
+	<!-- jquery -->
+	<script src="/user_assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="/user_assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="/user_assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="/user_assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="/user_assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="/user_assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="/user_assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="/user_assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="/user_assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="/user_assets/js/main.js"></script>
+
+</body>
+
+</html>

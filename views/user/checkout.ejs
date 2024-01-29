@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Coffee Blend</title>
+
+
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="/user_assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/user_assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="/user_assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="/user_assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="/user_assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="/user_assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="/user_assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="/user_assets/css/responsive.css">
+    <style>
+        .passwordForm {
+      display: none;
+      margin-top: 12vh;
+    }
+
+.edit {
+    margin-right: 20px;
+}
+
+
+.section-container {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+.passwordForm{
+  margin-top: 12vh;
+}
+    </style>
+
+</head>
+<body>
+	
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+					
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="" alt="">
+							</a>
+						</div>
+						
+
+						<!-- menu start -->
+						<nav class="main-menu" >
+							<ul>
+								<li class="current-list-item"><a href="/">Home</a></li>
+								<li><a href="/shop">shop</a></li>
+								
+								<li><a href="contact.html">Contact</a></li>
+								<li>
+									<a href="#">category</a>
+									<ul class="sub-menu">
+									  <li class="nav-item">
+										<% categories.filter(category => category.status !== false).forEach(category => { %>
+										  <li> 
+											<a class="dropdown-item" href="/shop?category=<%= category._id %>">
+											  <%= category.name %>
+											</a>
+										  </li>
+										<% }); %>
+									  </li>
+									</ul>
+								  </li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="/cartpage"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="/favouritespage"><i class="fas fa-heart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="/profile"><i class="fas fa-user"></i></a>
+										<div class="search-bar">
+											<form action="/searchProducts"method='post'>
+											  <input name="searchProducts" type="text" class="search-input" placeholder="Search...">
+											  <button class="search-button"><img src="/user_assets/img/search-50.png" style="height: 20px;"></button>
+											  </form>
+											</div>
+									</div>
+								</li>
+							</ul>
+						
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+    <div style="background-color: black; height: 150px;"></div>
+
+
+	<div class="untree_co-section">
+		<div class="container">
+		  <div class="row mb-5">
+			<div class="col-md-12">
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-md-6 mb-5 mb-md-0">
+			  <h2 class="h3 mb-3 text-black">Select Address</h2>
+			  <div class="p-3 p-lg-5 border bg-white">
+				
+
+				<% if (addresses && addresses.length > 0) { %>
+					<div class="address-list">
+						<% addresses.forEach(address => { %>
+							<div class="address-item">
+								<label>
+									
+								<input type="radio" name="selectedAddress" value="<%= address.id %>" class="address-radio" data-address-id="<%= address.id %>">
+
+									<span class="larger-text"><%= address.saveas %></span>
+								</label>
+								<div class="address-details larger-text">
+									<p><span class="key">Full Name: </span><%= address.fullname %></p>
+									<p><span class="key">House name/Flat no:</span><%= address.adname %></p>
+									<p><span class="key">Street:</span> <%= address.street %></p>
+									<p><span class="key">City:</span> <%= address.city %></p>
+									<p><span class="key">Pin-Code:</span><%= address.pincode %></p>
+									<p><span class="key">State:</span><%= address.state %></p>
+									<p><span class="key">Country:</span> <%= address.country %></p>
+									
+								</div>
+							</div>
+						<% }); %>
+					</div>
+				<% } else { %>
+					<p>No addresses found.</p>
+				<% } %>
+
+				<div class="form-group">
+					<div class="suso container mt-4">
+						<div class="edit-profile-form">
+						  <h2>Add New Address</h2>
+					  
+						  <form action="/checkoutreload" id="addressForm" method="post" class="row">
+						 
+							<!-- Personal details -->
+					
+							<div class="form-group col-md-6">
+								<label for="saveas">Save as</label>
+								<input type="text" id="saveas" name="saveas" class="form-control">
+							  </div>
+							<div class="form-group col-md-6">
+							  <label for="fullname">Full Name</label>
+							  <input type="text" id="fullname" name="fullname" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="adname">House Name / Flat No</label>
+							  <input type="text" id="adname" name="adname" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="street">Street</label>
+							  <input type="text" id="street" name="street" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="pincode">Pincode</label>
+							  <input type="number" id="pincode" name="pincode" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="city">City</label>
+							  <input type="text" id="city" name="city" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="state">State</label>
+							  <input type="text" id="state" name="state" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="country">Country</label>
+							  <input type="text" id="country" name="country" class="form-control">
+							</div>
+					  
+							<div class="form-group col-md-6">
+							  <label for="phone">Phone Number</label>
+							  <input type="number" id="phone" name="phone" class="form-control">
+							</div>
+
+							<input type="hidden" name="cartId" value="<%= cart._id %>">
+					  
+							<div class="form-group col-12">
+							  <button id="saveChangesButton" type="submit" class="btn btn-primary">Save Changes</button>
+							</div>
+						  </form>
+						</div>
+					  </div>
+
+				</div>
+
+			  </div>
+			</div>
+			<div class="col-md-6">
+
+				<div class="row mb-5">
+				  <div class="col-md-12">
+					<h2 class="h3 mb-3 text-black">Coupon Code</h2>
+					<div class="p-3 p-lg-5 border bg-white">
+					 
+<button onclick="openModal()" style="background-color: rgb(0, 123, 255);border-color: transparent;"><h6 style="color: #ffffff;">Available Coupons</h6></button>
+
+<!-- The Modal -->
+<div id="couponModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <ul><% if(availableCoupons.length>=0){%>
+	<% availableCoupons.forEach(coupon=> { %>
+		<li>
+			<div class="row">
+				<div class="col-3">
+					<%= coupon.couponCode %> &nbsp;&nbsp;
+						<% if (coupon.type==="percentageDiscount" ) { %>
+							<p>
+								<%= coupon.discount %>% off on Rs.<%=
+										coupon.minimumPrice %> purchase
+										(Maximum Redeemable: <%=
+											coupon.maxRedeem %>)
+							</p><br>
+							<% } else { %>
+								<p> Flat Rs. <%= coupon.discount %>% off
+										on <%= coupon.minimumPrice %>
+											purchase</p><br>
+								<% } %>
+			</div>
+			<div class="col-3 mt-2 ">
+			  <button onclick="copyToClipboard('<%= coupon.couponCode %>')" style="background-color: rgb(0, 123, 255); border-color:transparent; color: white;">Copy Code</button>
+			</div>
+		  </div>
+	  </li>
+	<% }); %>
+	<%};%>
+  </ul>
+</div>
+</div>
+					  
+					  <form>
+					  <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
+					  <div class="input-group w-75 couponcode-wrap">
+						<input type="text" class="form-control me-2" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
+						<div class="input-group-append">
+						  <button class="btn btn-black btn-sm" type="button" id="button-addon2" onclick="couponApply()" style=" margin-left:10px;background-color: #F28123;">Apply</button>
+						</div>
+						<div >
+						  <button style="color: black;margin-left: 10px;background-color: #F28123; height: 35px;" class="btn btn-black btn-sm" type="button" id="button-addon3" onclick="couponRevoke()" >Clear</button>
+						</div>
+					  </div>
+				  </form>
+
+					</div>
+				  </div>
+				</div>
+
+			  <div class="row mb-5">
+				<div class="col-md-12">
+				  <h2 class="h3 mb-3 text-black">Your Order</h2>
+				  <div class="p-3 p-lg-5 border bg-white">
+					<table class="table site-block-order-table mb-5">
+					  <thead>
+						<th>Product</th>
+						<th>Price&nbsp&&nbspQty</th>
+						<th>Total</th>
+					  </thead>
+					  <tbody>
+						<% cartItems.forEach(cartItem => { %>
+						<tr>
+							<td ><span id="productname"><%= cartItem.productName %></span></td>
+							<td id="itemprice"><%= cartItem.price %><strong class="mx-2">x</strong><span id="itemquantity"> <%= cartItem.quantity %></span></td>
+
+							<td id="itemtotal"><%= cartItem.itemTotal %></td>
+							</tr>
+						<% }); %>
+						<tr>
+						  <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+						  <td></td>
+						  
+						  <td id="subt" style="font-weight: 700;"><%= cart.total %></td>
+						</tr>
+						<tr>
+							<td class="text-black font-weight-bold"><strong>Discount Amount</strong></td>
+							<td></td>
+							<td id="dicprice" style="color: green; font-weight: 500;">0</td>
+						</tr>
+						<tr>
+						<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+						  <td></td>
+						  <td id="cartotal" style="font-weight: 700;"><strong><mark>
+							<%= cart.total %></mark></strong></td>
+						</tr>
+					
+					  </tbody>
+					</table>
+
+					<form  id="orderForm" action="placeorder" method="post" >
+						<label>
+							<input type="radio" name="paymentOption" value="Cash On Delivery" id="paymentOption1" onchange="updateHiddenField(this)">
+							Cash On Delivery
+						</label><br>
+						<label>
+							<input type="radio" name="paymentOption" value="Razorpay" id="paymentOption2" onchange="updateHiddenField(this)">
+							Razorpay
+						  </label><br>
+
+						  <label>
+							  <input type="radio" name="paymentOption" value="Wallet" id="paymentOption3" onchange="updateHiddenField(this)">
+							Wallet
+							</label><br><br>
+
+				
+					<input type="hidden" name="selectedAddressId" id="selectedAddressId" value="<%= addresses.length > 0 ? addresses[0].id : '' %>">
+				
+					<% cartItems.forEach(cartItem => { %>
+				
+					<input type="hidden" name="selectedProductIds[]" class="selectedProductIds[]" value="<%= cartItem.productId ? cartItem.productId.toString() : '' %>">
+
+					<input type="hidden" name="selectedProductNames[]" class="selectedProductNames[]" value="<%= cartItem.productName %>">
+					<input type="hidden" name="selectedProductPrices[]" class="selectedProductPrices[]" value="<%= cartItem.price %>">
+
+					<input type="hidden" name="selectedQuantities[]" class="selectedQuantities[]" value="<%= cartItem.quantity %>">
+					<input type="hidden" name="selectedCartTotals[]" class="selectedCartTotals[]" value="<%= cartItem.itemTotal %>">
+				
+					<% }); %>
+					<input type="hidden" name="carttotal" class="carttotal" id="carttotal"value="<%= cart.total %>">
+					<input type="hidden" name="selectedPaymentOption" id="selectedPaymentOption">
+					
+					<input type="hidden" name="cartId" value="<%= cart._id %>">
+
+					<div class="form-group" >
+					<button class="btn btn-black btn-lg py-3 btn-block" type="button" style="background-color:#F28123;" onclick="razorpay()">Place Order</button>
+					</div>
+				</form>
+
+
+</div>
+			</div>
+		  </div>
+
+		</div>
+	  </div>
+	
+	</div>
+  </div>
+
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">About us</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>203 Fake St. Mountain View, San Francisco, California, USA.</li>
+							<li>support@coffeeblenf.com</li>
+							<li>+00 111 222 3333</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Pages</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">Menu</a></li>
+							<li><a href="services.html">Shop</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribe</h2>
+						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+
+
+
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+	<script>
+		function openModal() {
+		  var modal = document.getElementById('couponModal');
+		  modal.style.display = 'block';
+		}
+	  
+		function closeModal() {
+		  var modal = document.getElementById('couponModal');
+		  modal.style.display = 'none';
+		}
+	  
+		function copyToClipboard(couponCode) {
+		  var tempInput = document.createElement('input');
+		  tempInput.value = couponCode;
+		  document.body.appendChild(tempInput);
+	  
+		  tempInput.select();
+		  document.execCommand('copy');
+	  
+		  document.body.removeChild(tempInput);
+	  
+		  alert('Coupon code copied to clipboard: ' + couponCode);
+		}
+	  
+		document.addEventListener('DOMContentLoaded', function () {
+		
+		  window.addEventListener('click', function (event) {
+			var modal = document.getElementById('couponModal');
+			if (event.target === modal) {
+			  closeModal();
+			}
+		  });
+		});
+	  </script>
+
+<script>
+	$(document).ready(function () {
+		$('.address-radio').change(function () {
+			var selectedAddressId = $(this).data('address-id');
+			$('#selectedAddressId').val(selectedAddressId)
+			$('.address-details').slideUp();
+			$(this).closest('.address-item').find('.address-details').slideDown();
+		});
+	});
+	function updateHiddenField(selectedRadio) {
+	document.getElementById('selectedPaymentOption').value = selectedRadio.value;
+	}
+	</script>
+
+<script>
+	async function razorpay() {
+		let amountToPay = document.getElementById('cartotal').innerText
+		var pay = document.querySelector('input[name="paymentOption"]:checked');
+		var addressTo = document.querySelector('input[name="selectedAddress"]:checked');
+
+
+		if (!pay) {
+			Swal.fire({
+				
+				text: 'please select a payment option',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				customClass: {
+					title: 'text-danger',
+					popup: 'swal2-popup-custom',
+					confirmButton: 'btn btn-danger'
+				},
+				showCancelButton: false,
+				showCloseButton: true,
+				showLoaderOnConfirm: false,
+				timer: 3000
+			});
+
+		}
+		else if (!addressTo) {
+			Swal.fire({
+				text: 'please select an address',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				customClass: {
+					title: 'text-danger',
+					popup: 'swal2-popup-custom',
+					confirmButton: 'btn btn-danger'
+				},
+				showCancelButton: false,
+				showCloseButton: true,
+				showLoaderOnConfirm: false,
+				timer: 3000
+			});
+
+		}
+
+		else if (pay.value == 'Razorpay') {
+			console.log("upi total", "ppppppp");
+
+			var options = {
+			"key": 'rzp_test_v8PCaJHB5kU6bu', 
+			"amount":  amountToPay*100, 
+			"name": "Coffee Blend",
+			"description": "Test Transaction",
+			"image": "Coffee BLend",
+			"order_id": orderId, 
+			"handler": function (response){
+			alert(response.razorpay_payment_id);
+			document.getElementById('orderForm').action = '/placeOrder';
+			document.getElementById('orderForm').method = 'post';
+
+				
+					document.getElementById('orderForm').submit();
+
+				},
+
+
+				"theme": {
+					"color": "orange"
+				},
+			};
+			var rzp1 = new Razorpay(options);
+			rzp1.on('payment.failed', function (response) {
+				alert(response.error.code);
+				alert(response.error.description);
+      			alert(response.error.source);
+        		alert(response.error.step);
+        		alert(response.error.reason);
+        		alert(response.error.metadata.order_id);
+        		alert(response.error.metadata.payment_id);
+});
+				
+			rzp1.open();
+
+
+			e.preventDefault();
+
+
+			var orderId;
+			$(document).ready(function () {
+				var settings = {
+					"url": "/create/orderId",
+					"method": "POST",
+					"timeout": 0,
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"data": JSON.stringify({
+						"amount": amountToPay * 100
+					}),
+				};
+				;
+
+				$.ajax(settings).done(function (response) {
+
+					orderId = response.orderId;
+					console.log(orderId);
+					$("button").show();
+				});
+			});
+
+
+		}
+		else if (pay.value === 'Wallet') {
+			console.log("coooococococococ");
+			try {
+				const response = await fetch('/wallettransaction', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						amount: amountToPay
+					})
+				});
+
+				const data = await response.json();
+
+				if (data.success) {
+        console.log(pay.value, "000000");
+		document.getElementById('orderForm').action = '/placeOrder';
+  document.getElementById('orderForm').method = 'post';
+  document.getElementById('orderForm').submit();
+} else {
+
+  Swal.fire({
+    text: "You Don't have Enough money in Wallet",
+    icon: 'error',
+    confirmButtonText: 'Add Money', 
+    showCancelButton: true,
+    showCloseButton: true,
+    customClass: {
+      title: 'text-danger',
+      popup: 'swal2-popup-custom',
+      confirmButton: 'btn btn-danger',
+      cancelButton: 'btn btn-secondary'
+    },
+    showLoaderOnConfirm: false,
+    timer: 3000
+  }).then((result) => {
+    if (result.isConfirmed) {
+   
+      console.log("User clicked on Add Money button");
+ 
+      window.location.href = '/wallet';
+    } else {
+      console.log("User clicked on Cancel or close button");
+    }
+  });
+}
+
+    } catch (error) {
+      console.error("An error occurred during wallet transaction:", error);
+     
+    }}
+      else{
+        console.log("jwDQJWD");
+        document.getElementById('orderForm').action = '/placeOrder';
+document.getElementById('orderForm').method = 'post'; 
+			
+			document.getElementById('orderForm').submit();
+
+		}
+	}
+
+</script>
+
+<script>
+
+	function couponApply() {
+		const couponCode = document.getElementById('c_code').value;
+		const subtotal=document.getElementById('subt').innerText
+	
+		fetch('/applyCoupon', {
+			method: "POST",
+			headers: {
+				'Content-Type': "application/json"
+			},
+			body: JSON.stringify({couponCode,subtotal })
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				Swal.fire({
+			  text: data.message,
+			  icon: 'success',
+			  confirmButtonText: 'ok',
+			  customClass: {
+				title: 'text-danger',
+				popup: 'swal2-popup-custom',
+				confirmButton: 'btn btn-danger'
+			  },
+			  showCancelButton: false,
+			  showCloseButton: true,
+			  showLoaderOnConfirm: false,
+			  timer: 3000
+			});
+				console.log("ivideumethi")
+				document.getElementById('dicprice').innerText="-"+data.dicprice
+			   document.getElementById('cartotal').innerText=data.price
+			   document.getElementById('carttotal').value=data.price
+	
+	
+		   
+			} else {
+				Swal.fire({
+			  text: data.message,
+			  icon: 'error',
+			  confirmButtonText: 'OK',
+			  customClass: {
+				title: 'text-danger',
+				popup: 'swal2-popup-custom',
+				confirmButton: 'btn btn-danger'
+			  },
+			  showCancelButton: false,
+			  showCloseButton: true,
+			  showLoaderOnConfirm: false,
+			  timer: 3000
+			});
+			}
+		})
+		.catch(error => {
+			console.error('Error applying coupon:', error);
+			alert('An error occurred while applying the coupon. Please try again.');
+		});
+	}
+	
+		function couponRevoke() {
+			
+			const couponCode = document.getElementById('c_code').value;
+		const subtotal=document.getElementById('subt').innerText
+	
+		fetch('/revokeCoupon', {
+			method: "POST",
+			headers: {
+				'Content-Type': "application/json"
+			},
+			body: JSON.stringify({couponCode,subtotal })
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				Swal.fire({
+			  text: "coupon revoked",
+			  icon: 'success',
+			  confirmButtonText: 'OK',
+			  customClass: {
+				title: 'text-danger',
+				popup: 'swal2-popup-custom',
+				confirmButton: 'btn btn-danger'
+			  },
+			  showCancelButton: false,
+			  showCloseButton: true,
+			  showLoaderOnConfirm: false,
+			  timer: 3000
+			});
+				document.getElementById('dicprice').innerText=0
+			   document.getElementById('cartotal').innerText=data.price
+			   document.getElementById('carttotal').value=data.price
+	
+	
+		   
+			} else {
+				Swal.fire({
+			  text: data.message,
+			  icon: 'error',
+			  confirmButtonText: 'OK',
+			  customClass: {
+				title: 'text-danger',
+				popup: 'swal2-popup-custom',
+				confirmButton: 'btn btn-danger'
+			  },
+			  showCancelButton: false,
+			  showCloseButton: true,
+			  showLoaderOnConfirm: false,
+			  timer: 3000
+			});
+			}
+		})
+		.catch(error => {
+			console.error('Error applying coupon:', error);
+			alert('An error occurred while applying the coupon. Please try again.');
+		});
+		}
+	
+	
+			</script>
+			
+	 
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- jquery -->
+	<script src="/user_assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="/user_assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="/user_assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="/user_assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="/user_assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="/user_assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="/user_assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="/user_assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="/user_assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="/user_assets/js/main.js"></script>
+	<script src="js/tiny-slider.js"></script>
+
+	
+
+</body>
+</html>

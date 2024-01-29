@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/"
+    />
+
+    <!-- title -->
+    <title>Coffee Blend</title>
+
+    <!-- favicon -->
+    <!-- <link rel="shortcut icon" type="image/png" href=""> -->
+
+    <!-- google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="user_assets/css/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="user_assets/bootstrap/css/bootstrap.min.css" />
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="user_assets/css/owl.carousel.css" />
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="user_assets/css/magnific-popup.css" />
+    <!-- animate css -->
+    <link rel="stylesheet" href="user_assets/css/animate.css" />
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="user_assets/css/meanmenu.min.css" />
+    <!-- main style -->
+    <link rel="stylesheet" href="user_assets/css/main.css" />
+    <!-- responsive -->
+    <link rel="stylesheet" href="user_assets/css/responsive.css" />
+  </head>
+
+  <body>
+    <!--PreLoader-->
+    <!-- <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div> -->
+    <!--PreLoader Ends-->
+
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 text-center">
+            <div class="main-menu-wrap">
+              <!-- <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a> -->
+              <!-- logo -->
+              <div class="site-logo">
+                <a href="index.html">
+                  <img src="" alt="" />
+                </a>
+              </div>
+              <!-- logo -->
+
+              <!-- menu start -->
+              <nav class="main-menu">
+                <ul>
+                  <li class="current-list-item" style="color: black">
+                    <a href="/">Home</a>
+                  </li>
+                  <li><a href="#" style="color: black">Menu</a></li>
+                  <li>
+                    <a href="contact.html" style="color: black">Contact</a>
+                  </li>
+                  <li>
+                    <div class="header-icons">
+                      <a
+                        class="shopping-cart"
+                        href="/cartpage"
+                        style="color: black"
+                        ><i class="fas fa-shopping-cart"></i
+                      ></a>
+                      <a
+                        class="mobile-hide search-bar-icon"
+                        href="/favouritespage"
+                        style="color: black"
+                        ><i class="fas fa-heart"></i
+                      ></a>
+                      <a
+                        class="mobile-hide search-bar-icon"
+                        href="/profile"
+                        style="color: black"
+                        ><i class="fas fa-user"></i
+                      ></a>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+              <!-- <a class="mobile-show search-bar-icon" href="#" style="color: black;"	><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div> -->
+              <!-- menu end -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end header -->
+
+    <div></div>
+
+    <div class="list-section pt-80 pb-80">
+      <div class="container">
+        <div class="row">
+          <main>
+            <!-- End Hero Section -->
+            <!-- User Profile Page Content -->
+            <div class="container mt-4">
+              <!-- Favorites Section -->
+              <section class="favorites-section mt-4"></section>
+
+              <!-- User Details Section -->
+              <section class="user-details-section mt-4">
+                <a href="/userdetails">
+                  <h3>User Details</h3>
+                </a>
+                <!-- Add user details content here -->
+              </section>
+
+              <!-- Favorites Section -->
+              <section class="favorites-section mt-4">
+                <a href="/favouritespage">
+                  <h3>Favorites</h3>
+                </a>
+                <!-- Add favorites content here -->
+              </section>
+
+              <!-- Your Cart Section -->
+              <section class="your-cart-section mt-4">
+                <a href="/cartpage">
+                  <h3>Your Cart</h3>
+                </a>
+                <!-- Add cart content here -->
+              </section>
+
+              <!-- Your Orders Section -->
+              <section class="your-orders-section mt-4">
+                <a href="/orderhistory">
+                  <h3>Your Orders</h3>
+                </a>
+                <!-- Add orders content here -->
+              </section>
+
+              <section class="your-orders-section mt-4">
+                <a href="/Rewards">
+                  <h3>Coupons & Rewards</h3>
+                </a>
+                <!-- Add orders content here -->
+              </section>
+
+              <a href="/wallet">
+                <section class="your-orders-section mt-4">
+                  <h3>Your Wallet</h3>
+                  <!-- Add orders content here -->
+                </section>
+              </a>
+
+              <p class="font-sans-serif">Referal Code(Invite Friends and get ₹100): <%= userData.code %></p>
+
+              <!-- Logout Button -->
+              <section class="logout-section mt-4">
+                <form method="get" action="/logout">
+                  <button class="btn btn-danger">Logout</button>
+                </form>
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-box about-widget">
+              <h2 class="widget-title">About us</h2>
+              <p>
+                Ut enim ad minim veniam perspiciatis unde omnis iste natus error
+                sit voluptatem accusantium doloremque laudantium, totam rem
+                aperiam, eaque ipsa quae.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-box get-in-touch">
+              <h2 class="widget-title">Get in Touch</h2>
+              <ul>
+                <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+                <li>support@fruitkha.com</li>
+                <li>+00 111 222 3333</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-box pages">
+              <h2 class="widget-title">Pages</h2>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="about.html">Menu</a></li>
+                <li><a href="services.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                  <a href="#">category</a>
+                  <ul class="sub-menu">
+                    <li class="nav-item">
+                      <% categories.filter(category=> category.status !==
+                      false).forEach(category => { %>
+                      <a
+                        class="dropdown-item"
+                        href="/shop?category=<%= category._id %>"
+                      >
+                        <%= category.name %>
+                      </a>
+                      <% }); %>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-box subscribe">
+              <h2 class="widget-title">Subscribe</h2>
+              <p>Subscribe to our mailing list to get the latest updates.</p>
+              <form action="index.html">
+                <input type="email" placeholder="Email" />
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end footer -->
+  </body>
+</html>

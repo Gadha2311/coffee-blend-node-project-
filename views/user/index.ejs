@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>Coffee Blend</title>
+
+
+
+
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="user_assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="user_assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="user_assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="user_assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="user_assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="user_assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="user_assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="user_assets/css/responsive.css">
+	<link rel="stylesheet" href="user_assets/css/tiny-slider.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
+	<style>
+		.sliderimg{
+	  height: 37vw;
+	  object-fit: cover;
+	}
+	  .category-options {
+		display: none;
+	  }
+	   .animated {
+		animation: bounce 1s infinite;
+	  }
+	  .popular-img img,
+		  .choice-watch-img img {
+			  height: 360px; 
+			  width: 379.98px; 
+		  }
+		  #container {
+      margin-top: 50px;
+    }
+
+    .circular-buttons {
+      text-align: center;
+    }
+
+    .circular-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin: 0 10px;
+    border: 2px solid #3b5d50;
+    color: #3b5d50;
+    font-size: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    }
+
+    .circular-btn:hover {
+      background-color: #3b5d50;
+      color: #ffffff;
+    }
+
+    .number-circle {
+      width: 100px;
+      height: 100px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      margin: 20px auto;
+      border: 2px solid #3b5d50;
+      color: #3b5d50;
+      font-size: 24px;
+      line-height: 100px;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .number-circle:hover {
+      background-color: #3b5d50;
+      color: #ffffff;
+    }
+	
+.single-popular-items {
+	margin-bottom: 10px;
+}
+
+
+	  </style> 
+
+
+</head>
+<body>
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a href="/">Home</a></li>
+								<li><a href="/shop">shop</a></li>
+								<li><a href="#">Contact</a></li>
+								<li>
+									<a href="#">category</a>
+									<ul class="sub-menu">
+									  <li class="nav-item">
+										<% categories.filter(category => category.status !== false).forEach(category => { %>
+										  <li> 
+											<a class="dropdown-item" href="/shop?category=<%= category._id %>">
+											  <%= category.name %>
+											</a>
+										  </li>
+										<% }); %>
+									  </li>
+									</ul>
+								  </li>
+								  
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="/cartpage"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="/favouritespage"><i class="fas fa-heart"></i></a>
+                                        <a class="mobile-hide search-bar-icon" href="/profile"><i class="fas fa-user"></i></a>
+									</div>
+									<div class="search-bar">
+										<form action="/searchProducts"method='post'>
+										  <input name="searchProducts" type="text" class="search-input" placeholder="Search...">
+										  <button class="search-button"><img src="/user_assets/img/search-50.png" style="height: 20px;"></button>
+										  </form>
+										</div>
+								</li>
+							</ul>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- end header -->
+	
+
+	<!-- hero area -->
+	
+	<div class="slider-area">
+        <div class="slider-active">
+          <!-- Single Slider -->
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+          <div id="carouselExampleIndicators" class="carousel slide" class="carousel-inner" >
+            <% banners.forEach(function(banner, index) { %>
+              <% if (banner.active) { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                  <a href="/bannerURL?id=<%= banner._id %>">
+                    <img src="<%= banner.image.url %>" class="d-block w-100 sliderimg" alt="<%= banner.title %>">
+                    <div class="carousel-caption d-none d-md-block" style="color: <%= (banner.color !== undefined && banner.color !== null) ? banner.color : '#fff' %>;">
+                      <h1 style="font-size: 120px;"><%= banner.title %></h1>
+                      <h3><%= banner.subtitle %></h3>
+                    </div>
+                  </a>
+                </div>
+              <% } else { %>
+              
+                <div class="carousel-item">
+                  <img src="path-to-default-image" class="d-block w-100 sliderimg" alt="Default Image">
+                  <div class="carousel-caption d-none d-md-block" style="color: #fff;">
+                    <h1 style="font-size: 120px;">Default Title</h1>
+                    <h3>Default Subtitle</h3>
+                  </div>
+                </div>
+              <% } %>
+            <% }); %>
+          </div>
+          
+          
+          
+          </div>
+
+  
+        </div>
+      </div>
+      
+
+	<!-- end hero area -->
+	
+
+	<div class="popular-items section-padding30" style="padding-top: 40%;">
+        <div class="container" id="product-container">
+            <!-- Section tittle -->
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-10">
+                    <div class="section-tittle mb-70 text-center">
+                        <h2>Discover</h2>
+                        <p>Enjoy every moment..!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- product_display.ejs -->
+            <div class="row">
+                <% products.forEach(product => { %>
+                    <div  class="col-xl-4 col-lg-4 col-md-6 col-sm-6" >
+                        <a href="/singleproduct/<%= product._id %>">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                <% if (product.images && product.images.length > 0) { %>
+                                 
+                                    <img src="<%= product.images[0] %>" alt="<%= product.name %> ">
+                                <% } else { %>
+                                 
+                                    <img src="path/to/placeholder-image.jpg" alt="Placeholder Image">
+                                <% } %>
+                                <div class="img-cap">
+									<a href="/singleproduct/<%= product._id %>" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+								<h3 style="font-size: 18px;"><%= product.name %></h3>
+								<span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs <%= product.price %></span>
+                            </a>                                                      
+                            </div>
+                       
+                    </div>
+					 </div>
+                <% }); %>
+            </div>
+			<div id="container" >
+				<div class="circular-buttons">
+				<% if(currentPage > 1)	{ %>
+				  <a  class="circular-btn"  onclick="changePage('<%=currentPage%>',-1)"><i class="fas fa-angle-left"></i></a>
+				<% } %>
+				  <div class="number-circle animated"><%=currentPage%></div>
+				<% if(currentPage < totalPages) { %>
+				  <a  class="circular-btn" onclick="changePage('<%=currentPage%>',1)"><i class="fas fa-angle-right"></i></a>
+				<% } %>
+				</div>
+			  </div>
+			  
+
+
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">About us</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>203 Fake St. Mountain View, San Francisco, California, USA.</li>
+							<li>support@coffeeblenf.com</li>
+							<li>+00 111 222 3333</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Pages</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">Menu</a></li>
+							<li><a href="services.html">Shop</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribe</h2>
+						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
+						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
+					</p>
+				</div> -->
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+		  var slider = tns({
+		  container: '.category-slider',
+		  items: 3,
+		  axis: 'horizontal', // Set the axis to vertical
+		  slideBy: 'page',
+		  autoplay: true, // Set to true for automatic sliding
+		  nav: false,
+		  controls:false,
+		  autoplayButtonOutput: false // Hide autoplay start/stop button
+  
+		  });
+		});
+		</script>
+	  <script src="js/bootstrap.bundle.min.js"></script>
+	  <script src="js/tiny-slider.js"></script>
+	  <script src="js/custom.js"></script>
+	  <script src="js/togglenav.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-GLhlTQ8iK1u6o9d6swnf7D90qwgwR4O/4XBDlB1Fm/E=" crossorigin="anonymous"></script>
+  
+	<script>
+	document.addEventListener('DOMContentLoaded', function abcd() {
+	  new bootstrap.Carousel(document.getElementById('carouselExampleIndicators'), {
+		interval: 5000, 
+	  });
+	});
+  </script>
+  
+ <!-- for pagination -->
+ <script>
+	async function changePage(currentPage,action){
+		try {
+			const response = await fetch('/pagination',{
+				method:'POST',
+				headers:{
+					'Content-type':'application/json'
+				},
+				body:JSON.stringify({
+					currentPage,
+					action
+				})
+			})
+
+			const data = await response.json();
+
+			if(data){
+				updateProductContainer(data.products);
+				updatePaginationContainer(data.currentPage,data.totalPages);
+			}
+		} catch (error) {
+			console.log("error while fetching pagination data",error)
+		}
+	}
+
+
+	function updateProductContainer(products) {
+		const productContainer = document.getElementById("product-container");
+		productContainer.innerHTML = ""; 
+		products.forEach(product => {
+			const newHTML = `
+			
+			<div  class="col-xl-4 col-lg-4 col-md-6 col-sm-6" >
+                        <a href="/singleproduct/${ product._id } ">
+                        <div class="single-popular-items mb-50 text-center">
+                            <div class="popular-img">
+                                    <img src="${ product.images[0] }" alt="${ product.name} ">
+                                <div class="img-cap">
+									<a href="/singleproduct/${ product._id }" class="btn btn-primary" style="height: 30px; margin-top: 15px;">Buy Now</a>
+                                </div>
+                                <div class="favorit-items">
+                                    <span class="flaticon-heart"></span>
+                                </div>
+                            </div>
+                            <div class="popular-caption">
+								<h3 style="font-size: 18px;">${ product.name }</h3>
+								<span style="font-size: 20px; color: #f28123; font-weight: bold;">Rs ${product.price}</span>
+                            </a>
+                            </div>
+							
+			`;
+			productContainer.innerHTML += newHTML;
+		});
+	}
+
+	function updatePaginationContainer(currentPage,totalPages){
+		let values=document.getElementById('container');
+		values.innerHTML=" ";
+		const leftArrow = currentPage > 1
+		? `<a  class="circular-btn"  onclick="changePage('${currentPage}',-1)"><i class="fas fa-angle-left"></i></a>`
+		: '';
+
+		const rightArrow = currentPage < totalPages
+? `<a  class="circular-btn" onclick="changePage('${currentPage}',1)"><i class="fas fa-angle-right"></i></a>`
+: '';
+
+	const paginationHTML = 
+	`
+		<div class="circular-buttons">
+			${leftArrow}
+			<div class="number-circle animated">${currentPage}</div>
+			${rightArrow}
+		</div>
+	`;
+
+
+	values.innerHTML += paginationHTML
+		
+	}
+</script>
+<!--  pagination ends -->
+
+		
+	<!-- jquery -->
+	<script src="/user_assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="/user_assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="/user_assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="/user_assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="/user_assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="/user_assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="/user_assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="/user_assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="/user_assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="/user_assets/js/main.js"></script>
+
+
+	<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>
+		<script src="js/togglenav.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-GLhlTQ8iK1u6o9d6swnf7D90qwgwR4O/4XBDlB1Fm/E=" crossorigin="anonymous"></script>
+
+</body>
+</html>
