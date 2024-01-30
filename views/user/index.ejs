@@ -107,12 +107,6 @@
   flex-wrap: wrap;
 }
 
-
-
-
-
-
-
 	  </style> 
 
 
@@ -354,12 +348,12 @@
 		  var slider = tns({
 		  container: '.category-slider',
 		  items: 3,
-		  axis: 'horizontal', // Set the axis to vertical
+		  axis: 'horizontal', 
 		  slideBy: 'page',
-		  autoplay: true, // Set to true for automatic sliding
+		  autoplay: true, 
 		  nav: false,
 		  controls:false,
-		  autoplayButtonOutput: false // Hide autoplay start/stop button
+		  autoplayButtonOutput: false 
   
 		  });
 		});
@@ -408,7 +402,6 @@
 	function updateProductContainer(products) {
   const productContainer = document.getElementById("product-container");
   productContainer.innerHTML = "";
-  productContainer.innerHTML += '<div class="row">';
   products.forEach(product => {
     const newHTML = `
       <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
@@ -433,7 +426,6 @@
     `;
     productContainer.innerHTML += newHTML;
   });
-  productContainer.innerHTML += '</div>';
 }
 
 	function updatePaginationContainer(currentPage,totalPages){
@@ -460,6 +452,8 @@
 	values.innerHTML += paginationHTML
 		
 	}
+
+
 </script>
 <!--  pagination ends -->
 
