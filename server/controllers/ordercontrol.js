@@ -93,7 +93,8 @@ const generateInvoice = async (order) => {
           })),
 
           subtotal: `₹${subtotal.toFixed(2)}`,
-          bottomNotice: "Thank you for shopping at UrbanSole!",
+          bottomNotice: "Thank you for shopping at Coffee Blend!",
+          
       };
       console.log("data:", data);
 

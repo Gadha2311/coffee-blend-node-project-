@@ -9,8 +9,7 @@
 	<!-- title -->
 	<title>Coffee Blend</title>
 
-	<!-- favicon -->
-	<!-- <link rel="shortcut icon" type="image/png" href=""> -->
+	
 
 
 	<!-- google font -->
@@ -34,16 +33,132 @@
 	<!-- responsive -->
 	<link rel="stylesheet" href="/user_assets/css/responsive.css">
 
+	<style>
+		.star-rating {
+            display: inline-block;
+            font-size: 2rem;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            display: inline-block;
+            cursor: pointer;
+            color: #ddd;
+        }
+
+        .star-rating label:before {
+            content: '\2605'; /* Unicode character for a star */
+            display: inline-block;
+        }
+        
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+        
+.cancelled-row {
+    filter: blur(2px); /* Adjust the blur effect as needed */
+    background-color: lightgray; /* Adjust the background color for cancelled rows */
+    color: red; /* Adjust the text color for cancelled rows */
+}
+   
+
+    .order-tracking h1 {
+        color: #3b5d50;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .tracking-dots {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tracking-lines {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.line {
+    flex: 1;
+    height: 3px;
+    background-color: #008000; /* Set the color of the connecting line */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1; /* Set the z-index to position the lines behind the dots */
+}
+
+.dot {
+    width: 30px;
+    height: 30px;
+    background-color: #f7faf9;
+    border-radius: 50%;
+    animation: moveDot 1s infinite alternate;
+    position: relative;
+    z-index: 1; 
+}
+
+
+#pendingDot::before {
+    content: '';
+    width: calc(100% - 30px); 
+    left: 50%;
+    transform: translateX(-50%);
+}
+#processingDot::before {
+    content: '';
+    width: calc(100% - 60px); 
+    left: 50%;
+    transform: translateX(-50%);
+}
+#shippedDot::before {
+    content: '';
+    width: calc(100% - 90px); 
+    left: 50%;
+    transform: translateX(-50%);
+}
+#deliveredDot::before {
+    content: '';
+    width: calc(100% - 120px); 
+    left: 50%;
+    transform: translateX(-50%);
+}
+	</style>
 </head>
 <body>
 	
-	<!--PreLoader-->
-    <!-- <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div> -->
-    <!--PreLoader Ends-->
+	
 	
 	<!-- header -->
 	<div class="top-header-area" id="sticker">
@@ -51,8 +166,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
-						<!-- <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a> -->
-						<!-- logo -->
+						
 						<div class="site-logo">
 							<a href="index.html">
 								<img src="" alt="">
@@ -141,15 +255,15 @@
                     <h3>Order Address</h3>
                     <p style="font-size: 20px;"><%=order.shippingAddress.fullname%><br><%=order.shippingAddress.adname%>&nbsp;,&nbsp;<%=order.shippingAddress.street%><br><%=order.shippingAddress.city%>&nbsp;,&nbsp;<%=order.shippingAddress.pincode%><br><%=order.shippingAddress.phonenumber%></p>
 
-                    <a href="#" class="btn btn-link">Edit Address</a>
+                    
                 </div>
             </div>
 
             <!-- Order Tracking Section -->
             <div class="col-md-6">
                 <div class="order-tracking">
-                    <h1>Order Status: <span id="orderStatus"></span></h1>
-                    <p>Updated at: <span id="updatedAt"></span></p>
+                    <h1>Order Status: <%= order.status %> <span id="orderStatus"></span></h1>
+                    <p>Updated at:<%= order.updatedAt %> <span id="updatedAt"></span></p>
                     <div class="tracking-dots" id="trackingDots">
                         <div class="dot" id="pendingDot" data-step="1"><p></p></div>
                         <div class="dot" id="processingDot" data-step="2"><p></p></div>
@@ -193,15 +307,15 @@
             <h2><strong>Total Amount:</strong><%=order.totalPrice%></h2>
             <div style="margin-top: 30px; margin-bottom:12px;margin-left: 500px;">
                 <% if (order.status !== 'Cancelled' && order.status !== 'Returned' && order.status !== 'Delivered') { %>
-                    <!-- Code to execute if the condition is true -->
+                  
 					<a style="background-color: rgb(181, 0, 0); width: 350px;" href="#" class="btn btn-danger" onclick="confirmCancel('<%= order._id %>')">Cancel</a>
                 <% } else if (order.status === 'Delivered') { %>
-                    <!-- Code to execute if the condition is false -->
+                  
                     <a style="background-color: rgb(198, 3, 3)(172, 53, 53);" href="/returnorder/<%=order._id%>" class="btn btn-danger">Return</a>
                 <% } %>
 				<% order.items.forEach(item => { %>
 					<% if (item.status !== 'cancelled' && order.status == 'Delivered') { %>
-						<a style="background-color: rgb(208, 210, 70);font-size: 20px;" onclick="openModal('<%= item.productId %>')">Rate the product</a>
+						<a  class="btn btn-danger" style="background-color: rgb(208, 210, 70);font-size: 20px;" onclick="openModal('<%= item.productId %>')">Rate the product</a>
 					<% } %>
 				<% }); %>
             
@@ -226,7 +340,7 @@
 						<label for="review">Review:</label>
 						<textarea id="review" name="review" rows="4" required></textarea>
 						<input type="hidden" name="id" id="productIdInput" value="">
-						<button type="submit" style="width: 100%;">Submit</button>
+						<button  class="btn btn-danger" type="submit" style="width: 100%;background-color: rgb(208, 210, 70);">Submit</button>
 					</form>
 				</div>
 			</div>
