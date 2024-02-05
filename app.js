@@ -10,6 +10,7 @@ const adrouter=require('./server/router/admin')
 const cookieParser = require('cookie-parser')
 const multer=require("multer")
 const flash=require('express-flash')
+const axios = require('axios');
 
 
 require('dotenv').config()
