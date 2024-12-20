@@ -4,7 +4,7 @@ const mongoose=require("mongoose")
 // database connecting 
 const connect=async()=>{
     try {
-        mongoose.connect("mongodb+srv://gadha:gadha123@cluster0.raczqtl.mongodb.net/coffeee")
+        mongoose.connect("mongodb+srv://gadhavenu2311:gadha%40123@cluster0.5wwfa.mongodb.net/coffeeBlend")
         .then(console.log("Mongo db connected"))
         .catch((err)=>console.log(err))
     } catch (error) {
