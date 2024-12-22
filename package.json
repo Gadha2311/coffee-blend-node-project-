@@ -35,7 +35,7 @@
     "os": "^0.1.2",
     "otp-generator": "^4.0.1",
     "path": "^0.12.7",
-    "pdfjs-dist": "^2.9.359",
+    "pdfjs-dist": "^3.4.120",
     "puppeteer": "^21.6.1",
     "razorpay": "^2.9.2",
     "request": "^2.88.2",
