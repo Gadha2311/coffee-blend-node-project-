@@ -725,7 +725,7 @@ const singleproduct = async (req, res) => {
   try {
     const id = req.params.id;
     console.log("haywanu", id);
-    const product = await productModel.findOne({ _id: id }).populate({
+    const product = await productModel.findOne({ _id: id , status: true }).populate({
       path: "userRatings.userId",
       select: "username",
     });

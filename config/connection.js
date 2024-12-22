@@ -1,6 +1,6 @@
 
 const mongoose=require("mongoose")
-
+0/8
 // database connecting 
 const connect=async()=>{
     try {

@@ -242,14 +242,14 @@
       const colorPreview = document.getElementById("colorPreview");
 
       if (bannerColorInput && colorPreview) {
-    // Attach the event listener
-    bannerColorInput.addEventListener("input", function () {
-        console.log('Color changed to:', bannerColorInput.value); // Debugging log
-        colorPreview.style.backgroundColor = bannerColorInput.value; // Update preview
-    });
-} else {
-    console.error("Element(s) not found!");
-}
+        // Attach the event listener
+        bannerColorInput.addEventListener("input", function () {
+          console.log("Color changed to:", bannerColorInput.value);
+          colorPreview.style.backgroundColor = bannerColorInput.value; // Update preview
+        });
+      } else {
+        console.error("Element(s) not found!");
+      }
     </script>
   </body>
 </html>
