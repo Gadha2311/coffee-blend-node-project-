@@ -1,5 +1,5 @@
 
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 const nodemailer=require('nodemailer')
 const otpgenerator = require("otp-generator")
 const usermodel=require('../models/usermodel')

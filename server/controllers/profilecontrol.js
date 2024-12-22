@@ -1,4 +1,4 @@
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 const catModel = require("../models/category_model");
 const cartModel=require('../models/cart_model')
 const usermodel=require('../models/usermodel')

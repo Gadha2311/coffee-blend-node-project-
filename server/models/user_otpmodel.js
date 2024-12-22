@@ -1,6 +1,6 @@
 // module importing 
 const mongoose=require("mongoose")
-const bcrypt=require("bcrypt")
+const bcrypt=require("bcryptjs")
 
 
 // schema structuring 

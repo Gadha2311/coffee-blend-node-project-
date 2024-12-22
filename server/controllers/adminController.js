@@ -1,6 +1,6 @@
 const adminmodel = require("../models/usermodel");
 const categoryModel = require("../models/category_model");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const orderModel=require('../models/order_model')
 const Excel = require('exceljs');
 const puppeteer=require('puppeteer')
