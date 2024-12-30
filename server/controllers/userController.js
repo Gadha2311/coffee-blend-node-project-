@@ -159,6 +159,16 @@ const shop = async (req, res) => {
   }
 };
 
+const contact=async(req,res)=>{
+  try {
+    res.render("user/contact")
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("error occured")
+    
+  }
+}
+
 
 const shopping = async (req, res) => {
   try {
@@ -821,7 +831,7 @@ module.exports={
     searchProducts,
     filterProducts,
     bannerURL,
-    shopping 
-
+    shopping ,
+    contact
 
 }

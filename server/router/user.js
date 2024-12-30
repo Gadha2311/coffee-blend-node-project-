@@ -69,6 +69,7 @@ usrouter.get("/shop", userController.shop)
 usrouter.post("/searchProducts",userController.searchProducts)
 usrouter.get('/filterProducts',userController.filterProducts)
 usrouter.get("/sortProducts",userController.sortProducts)
+usrouter.get("/contact",userController.contact)
 
 
 //checkout
